@@ -38,6 +38,11 @@ void *receiver_thread(void *arg){
         switch (pk.flag){
             case SYN_FLAG:
                 LOG_MSG(LOG_DEBUG, "received SYN_FLAG");
+                UdpNetPacket pk2;
+                init_packet(&pk2, 0, SYN_ACK_FLAG, 0);
+                build_packet(&pk2);
+                size_t pk2_size = PACKET_HEADER_BYTES;
+                send_packet_to_v4(server->socket, &pk2, pk2_size, &client_addr_v4);
                 break;
 
             default:

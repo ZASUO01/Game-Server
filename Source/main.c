@@ -2,10 +2,12 @@
 // Created by pedro-souza on 12/10/2025.
 //
 #include "Network/UDPNet.h"
+#include "Network/UDPNet/NetLogger.h"
 
 int main(){
     platform_networking_init();
 
+    set_log_level(LOG_DEBUG);
     NetServer server;
     init_server(&server);
 

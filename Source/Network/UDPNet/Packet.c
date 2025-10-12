@@ -111,7 +111,7 @@ int is_valid_packet(UdpNetPacket *p){
 }
 
 void print_packet(UdpNetPacket *p){
-    if(p->state == PACKET_READY){
+    if(p->state == PACKET_READY) {
         uint16_t _length = ntohs(p->length);
 
         printf("==== PACKET HEADER ====\n");
