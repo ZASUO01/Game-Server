@@ -7,7 +7,10 @@
 #include "NetLogger.h"
 #include "Defs.h"
 #include "Addresses.h"
+#include "ServerOperations.h"
 
+static void init_server_threads(NetServer *server);
+static void join_server_threads(NetServer *server);
 static char *read_line();
 static void helper();
 static void print_local_addr();
@@ -26,9 +29,10 @@ void init_server(NetServer *server){
 
 void start_server_operations(NetServer *server){
     if(server->state == SERVER_READY){
-
-
         server->state = SERVER_RUNNING;
+
+        init_server_threads(server);
+
         LOG_MSG(LOG_INFO, "server operations started successfully");
     }
 }
@@ -81,7 +85,7 @@ void read_inputs(NetServer *server){
 
 void finish_server_operations(NetServer *server){
     if(server->state == SERVER_STOPPED){
-
+        join_server_threads(server);
     }
 
     LOG_MSG(LOG_INFO, "server finished successfully");
@@ -99,6 +103,18 @@ void close_server(NetServer *server) {
     }
 
     LOG_MSG(LOG_INFO, "server closed successfully");
+}
+
+static void init_server_threads(NetServer *server){
+    if(pthread_create(&server->receiver_t, NULL, receiver_thread, server) != 0){
+        sys_log_exit("receiver thread creation failure");
+    }
+}
+
+static void join_server_threads(NetServer *server) {
+    if(pthread_join(server->receiver_t, NULL) != 0){
+        sys_log_exit("receiver thread join failure");
+    }
 }
 
 static char *read_line(){

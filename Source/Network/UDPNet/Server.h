@@ -19,7 +19,7 @@ typedef struct {
     NetServerState state;
     int socket;
 
-    pthread_t receive_t;
+    pthread_t receiver_t;
     pthread_mutex_t server_mutex;
 } NetServer;
 

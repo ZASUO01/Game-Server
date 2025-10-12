@@ -16,7 +16,13 @@ add_executable(${PROJECT_NAME} Source/main.c
         Source/Network/UDPNet/Socket.h
         Source/Network/UDPNet/Addresses.c
         Source/Network/UDPNet/Addresses.h
-        Source/Network/UDPNet/Defs.h)
+        Source/Network/UDPNet/Defs.h
+        Source/Network/UDPNet/ServerOperations.c
+        Source/Network/UDPNet/ServerOperations.h
+        Source/Network/UDPNet/Packet.c
+        Source/Network/UDPNet/Packet.h
+        Source/Network/UDPNet/NetUtils.c
+        Source/Network/UDPNet/NetUtils.h)
 
 if(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE ws2_32)

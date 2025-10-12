@@ -21,6 +21,8 @@
     #include <ws2tcpip.h>
     #include <windows.h>
 
+    #define POLL_FD_TYPE WSAPOLLFD
+    #define socket_poll WSAPoll
     #define close_socket closesocket
 
     #ifdef _MSC_VER
@@ -31,7 +33,10 @@
     #include <sys/socket.h>
     #include <arpa/inet.h>
     #include <unistd.h>
+    #include <poll.h>
 
+    #define POLL_FD_TYPE struct pollfd
+    #define socket_poll poll
     #define close_socket close
 #endif
 
