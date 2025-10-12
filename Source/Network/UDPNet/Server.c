@@ -91,7 +91,7 @@ void close_server(NetServer *server) {
     if(server->state == SERVER_STOPPED){
         pthread_mutex_destroy(&server->server_mutex);
 
-        if(close(server->socket) < 0){
+        if(close_socket(server->socket) < 0){
             sys_log_exit("socket closure failed");
         }
 
