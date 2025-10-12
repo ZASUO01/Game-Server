@@ -50,7 +50,7 @@ int send_packet_to_v4(
     struct sockaddr_in *addr
 ){
     socklen_t addr_size = sizeof(struct sockaddr_in);
-    ssize_t bytes_sent = sendto(fd, pk, pk_size, 0, (struct sockaddr *)addr, addr_size);
+    ssize_t bytes_sent = sendto(fd, (char *)pk, pk_size, 0, (struct sockaddr *)addr, addr_size);
     if(bytes_sent < 0 || (size_t)bytes_sent != pk_size){
         return -1;
     }
@@ -63,7 +63,7 @@ int receive_packet_from_v4(int fd, UdpNetPacket *pk, struct sockaddr_in *addr){
     memset(pk, 0, pk_size);
 
     socklen_t addr_size = sizeof(struct sockaddr_in);
-    ssize_t bytes_received = recvfrom(fd, pk, pk_size, 0, (struct sockaddr *)addr, &addr_size);
+    ssize_t bytes_received = recvfrom(fd, (char *)pk, pk_size, 0, (struct sockaddr *)addr, &addr_size);
     if(bytes_received <= 0){
         return -1;
     }

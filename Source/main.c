@@ -3,6 +3,7 @@
 //
 #include "Network/UDPNet.h"
 #include "Network/UDPNet/NetLogger.h"
+#undef  main
 
 int main(){
     platform_networking_init();
