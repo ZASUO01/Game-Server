@@ -1,9 +1,10 @@
 //
-// Created by pedro-souza on 12/10/2025.
+// Created by pedro-souza on 16/10/2025.
 //
 #include "Platforms.h"
+#include <cstdio>
 
-int platform_networking_init() {
+int  Platforms::platformNetworkingInit() {
 #if PLATFORM_WINDOWS
     WSADATA wsaData;
     int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
@@ -18,7 +19,7 @@ int platform_networking_init() {
 #endif
 }
 
-void platform_networking_cleanup() {
+void Platforms::platformNetworkingCleanup() {
 #if PLATFORM_WINDOWS
     WSACleanup();
     printf("Winsock finished\n");

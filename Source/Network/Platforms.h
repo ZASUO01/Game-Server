@@ -1,7 +1,6 @@
 //
-// Created by pedro-souza on 12/10/2025.
+// Created by pedro-souza on 16/10/2025.
 //
-
 #ifndef PLATFORMS_H
 #define PLATFORMS_H
 
@@ -40,15 +39,9 @@
     #define close_socket close
 #endif
 
-#include <stdio.h>
-#include <stdint.h>
-#include <time.h>
-#include <stdlib.h>
-#include  <errno.h>
-#include  <string.h>
-#include <pthread.h>
-
-int platform_networking_init();
-void platform_networking_cleanup();
+namespace  Platforms {
+    int platformNetworkingInit();
+    void platformNetworkingCleanup();
+};
 
 #endif //PLATFORMS_H
